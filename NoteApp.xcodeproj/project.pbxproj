@@ -12,6 +12,9 @@
 		AA107F621ED0095000B312D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA107F601ED0095000B312D7 /* Main.storyboard */; };
 		AA107F641ED0095000B312D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA107F631ED0095000B312D7 /* Assets.xcassets */; };
 		AA107F671ED0095000B312D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA107F651ED0095000B312D7 /* LaunchScreen.storyboard */; };
+		AA5081601ED6C30D00A6BBCE /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50815D1ED6C30D00A6BBCE /* Realm.framework */; };
+		AA5081611ED6C30D00A6BBCE /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50815E1ED6C30D00A6BBCE /* RealmSwift.framework */; };
+		AA5081621ED6C30D00A6BBCE /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50815F1ED6C30D00A6BBCE /* SnapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		AA107F631ED0095000B312D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA107F661ED0095000B312D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA107F681ED0095000B312D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA50815D1ED6C30D00A6BBCE /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
+		AA50815E1ED6C30D00A6BBCE /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
+		AA50815F1ED6C30D00A6BBCE /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +35,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA5081601ED6C30D00A6BBCE /* Realm.framework in Frameworks */,
+				AA5081611ED6C30D00A6BBCE /* RealmSwift.framework in Frameworks */,
+				AA5081621ED6C30D00A6BBCE /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +49,7 @@
 			children = (
 				AA107F5B1ED0095000B312D7 /* NoteApp */,
 				AA107F5A1ED0095000B312D7 /* Products */,
+				AA50815C1ED6C30D00A6BBCE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +74,16 @@
 			path = NoteApp;
 			sourceTree = "<group>";
 		};
+		AA50815C1ED6C30D00A6BBCE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA50815D1ED6C30D00A6BBCE /* Realm.framework */,
+				AA50815E1ED6C30D00A6BBCE /* RealmSwift.framework */,
+				AA50815F1ED6C30D00A6BBCE /* SnapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,6 +94,7 @@
 				AA107F551ED0095000B312D7 /* Sources */,
 				AA107F561ED0095000B312D7 /* Frameworks */,
 				AA107F571ED0095000B312D7 /* Resources */,
+				AA5081631ED6C32200A6BBCE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -130,6 +151,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AA5081631ED6C32200A6BBCE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AA107F551ED0095000B312D7 /* Sources */ = {
@@ -260,6 +300,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = NoteApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.seoju.NoteApp;
@@ -272,6 +316,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = NoteApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.seoju.NoteApp;
@@ -299,6 +347,7 @@
 				AA107F6D1ED0095000B312D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
