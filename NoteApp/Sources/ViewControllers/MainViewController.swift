@@ -49,7 +49,9 @@ class MainViewController: UIViewController {
     // MARK: actions
     
     func addBarButtonTouchupInside(_ sender: Any) {
-        print("add memo")
+        let writeVC: WriteViewController = WriteViewController(title: "New Note")
+        let navigationController: UINavigationController = UINavigationController(rootViewController: writeVC)
+        self.present(navigationController, animated: true, completion: nil)
     }
 }
 

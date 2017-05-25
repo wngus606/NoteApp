@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AA0F5FE71ED6D80800603BDD /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5FE61ED6D80800603BDD /* Memo.swift */; };
+		AA0F5FE91ED6DAD300603BDD /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5FE81ED6DAD300603BDD /* WriteViewController.swift */; };
+		AA0F5FEB1ED6DF5600603BDD /* MemoTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5FEA1ED6DF5600603BDD /* MemoTableView.swift */; };
 		AA5081601ED6C30D00A6BBCE /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50815D1ED6C30D00A6BBCE /* Realm.framework */; };
 		AA5081611ED6C30D00A6BBCE /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50815E1ED6C30D00A6BBCE /* RealmSwift.framework */; };
 		AA5081621ED6C30D00A6BBCE /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50815F1ED6C30D00A6BBCE /* SnapKit.framework */; };
@@ -17,12 +19,13 @@
 		AA5081741ED6C5F900A6BBCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA5081701ED6C5F900A6BBCE /* Main.storyboard */; };
 		AA50817B1ED6C66000A6BBCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5081761ED6C66000A6BBCE /* AppDelegate.swift */; };
 		AA50817C1ED6C66000A6BBCE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5081791ED6C66000A6BBCE /* MainViewController.swift */; };
-		AA5081801ED6CEA200A6BBCE /* MemoTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA50817F1ED6CEA200A6BBCE /* MemoTableView.swift */; };
 		AA5081821ED6CF3B00A6BBCE /* MemoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5081811ED6CF3B00A6BBCE /* MemoTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AA0F5FE61ED6D80800603BDD /* Memo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
+		AA0F5FE81ED6DAD300603BDD /* WriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
+		AA0F5FEA1ED6DF5600603BDD /* MemoTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoTableView.swift; sourceTree = "<group>"; };
 		AA107F591ED0095000B312D7 /* NoteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA50815D1ED6C30D00A6BBCE /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		AA50815E1ED6C30D00A6BBCE /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
@@ -33,7 +36,6 @@
 		AA5081711ED6C5F900A6BBCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		AA5081761ED6C66000A6BBCE /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA5081791ED6C66000A6BBCE /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		AA50817F1ED6CEA200A6BBCE /* MemoTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoTableView.swift; sourceTree = "<group>"; };
 		AA5081811ED6CF3B00A6BBCE /* MemoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,7 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				AA5081791ED6C66000A6BBCE /* MainViewController.swift */,
-				AA50817F1ED6CEA200A6BBCE /* MemoTableView.swift */,
+				AA0F5FE81ED6DAD300603BDD /* WriteViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -137,6 +139,7 @@
 		AA50817A1ED6C66000A6BBCE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AA0F5FEA1ED6DF5600603BDD /* MemoTableView.swift */,
 				AA5081811ED6CF3B00A6BBCE /* MemoTableViewCell.swift */,
 			);
 			path = Views;
@@ -237,11 +240,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0F5FE91ED6DAD300603BDD /* WriteViewController.swift in Sources */,
 				AA50817B1ED6C66000A6BBCE /* AppDelegate.swift in Sources */,
 				AA50817C1ED6C66000A6BBCE /* MainViewController.swift in Sources */,
-				AA5081801ED6CEA200A6BBCE /* MemoTableView.swift in Sources */,
 				AA5081821ED6CF3B00A6BBCE /* MemoTableViewCell.swift in Sources */,
 				AA0F5FE71ED6D80800603BDD /* Memo.swift in Sources */,
+				AA0F5FEB1ED6DF5600603BDD /* MemoTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
