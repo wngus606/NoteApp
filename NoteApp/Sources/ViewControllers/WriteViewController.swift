@@ -35,7 +35,7 @@ class WriteViewController: UIViewController {
         return contentTextView
     }()
     
-    fileprivate let okButtonItem: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done,
+    fileprivate let okButtonItem: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save,
                                                                     target: nil,
                                                                     action: nil)
     fileprivate let cancelButtonItem: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
@@ -74,6 +74,9 @@ class WriteViewController: UIViewController {
     init(title: String) {
         super.init(nibName: nil, bundle: nil)
         self.title = title
+        
+        self.navigationItem.rightBarButtonItem = self.okButtonItem
+        self.navigationItem.leftBarButtonItem = self.cancelButtonItem
         
         self.okButtonItem.target = self
         self.okButtonItem.action = #selector(okButtonItemTouchUpInside)
