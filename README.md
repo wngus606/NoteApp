@@ -4,7 +4,7 @@ NoteApp
 ![iOS](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)
 ![Swift](https://img.shields.io/badge/Swift-3.1-orange.svg)
 
-Swift study project
+Swift study group mini project
 
 Usage
 ------------
