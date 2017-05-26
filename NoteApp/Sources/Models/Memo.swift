@@ -11,7 +11,7 @@ import RealmSwift
 
 class Memo: Object {
     
-    dynamic var creationDtae: Date = Date()
+    dynamic var creationDate: Date = Date()
     dynamic var memoTitle: String?
     dynamic var memoContents: String?
     

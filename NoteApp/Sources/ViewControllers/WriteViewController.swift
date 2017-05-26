@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import RealmSwift
 
 class WriteViewController: UIViewController {
     
     fileprivate static let placeHolderMessage: String = "Content"
+    fileprivate let dateFormat: String = "yyy-MM-MM"
+    
+    fileprivate var realm: Realm!
+    fileprivate var memo: Memo?
     
     fileprivate let creationDateLabel: UILabel = {
         let creationDateLabel: UILabel = UILabel(frame: .zero)
@@ -45,12 +50,18 @@ class WriteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // view background color
+        self.view.backgroundColor = .white
+        
+        // textview delegate
         self.contentTextView.delegate = self
         
+        // add subView
         self.view.addSubview(self.creationDateLabel)
         self.view.addSubview(self.titleTextField)
         self.view.addSubview(self.contentTextView)
         
+        // auto layout
         self.creationDateLabel.snp.makeConstraints { make in
             make.top.equalTo(self.topLayoutGuide.snp.bottom)
             make.height.equalTo(20)
@@ -71,9 +82,12 @@ class WriteViewController: UIViewController {
         }
     }
     
-    init(title: String) {
+    init(title: String, realmObject: Realm, memo: Memo? = nil) {
         super.init(nibName: nil, bundle: nil)
+        
         self.title = title
+        self.realm = realmObject
+        self.memo = memo
         
         self.navigationItem.rightBarButtonItem = self.okButtonItem
         self.navigationItem.leftBarButtonItem = self.cancelButtonItem
@@ -82,6 +96,8 @@ class WriteViewController: UIViewController {
         self.okButtonItem.action = #selector(okButtonItemTouchUpInside)
         self.cancelButtonItem.target = self
         self.cancelButtonItem.action = #selector(cancelButtonItemTouchUpInside)
+        
+        self.creationDateLabel.text = dateTypeToString()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -95,11 +111,40 @@ class WriteViewController: UIViewController {
     // MARK: Actions
     
     func okButtonItemTouchUpInside(_ sender: UIBarButtonItem) {
+        
+        let newMemo: Memo = Memo()
+        newMemo.creationDate = dateStringToDateType(dateString: self.creationDateLabel.text!)
+        newMemo.memoTitle = self.titleTextField.text
+        newMemo.memoContents = self.contentTextView.text
+        
+        do {
+            try self.realm.write {
+                self.realm.add(newMemo)
+            }
+        } catch let error {
+            print("real add error : \(error)")
+        }
+        
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     func cancelButtonItemTouchUpInside(_ sender: UIBarButtonItem) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: General method
+    
+    func dateTypeToString() -> String {
+        let nowFormatter: DateFormatter = DateFormatter()
+        nowFormatter.dateFormat = self.dateFormat
+        let nowDate: String = nowFormatter.string(from: Date())
+        return nowDate
+    }
+    
+    func dateStringToDateType(dateString: String) -> Date {
+        let formatter: DateFormatter = DateFormatter()
+        formatter.dateFormat = self.dateFormat
+        return formatter.date(from: dateString)!
     }
 }
 
