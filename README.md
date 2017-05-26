@@ -8,7 +8,17 @@ Swift study project
 
 Usage
 ------------
+[Carthage](https://github.com/Carthage/Carthage#installing-carthage) install:
 
+		$ brew update
+		$ brew install carthage
+
+Run:
+
+		$ carthage update
+
+
+Drag the built `Realm.framework`, `RealmSwift.framework`, `SnapKit.framework` into your Xcode project.
 
 
 Author
