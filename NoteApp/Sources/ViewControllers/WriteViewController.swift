@@ -12,7 +12,7 @@ import RealmSwift
 class WriteViewController: UIViewController {
     
     fileprivate static let placeHolderMessage: String = "Content"
-    fileprivate let dateFormat: String = "yyy-MM-MM"
+    fileprivate let dateFormat: String = "yyyy-MM-dd"
     
     fileprivate var realm: Realm!
     fileprivate var memo: Memo?

@@ -102,13 +102,29 @@ extension MainViewController: UITableViewDataSource {
 // MARK: TableView Delegate
 
 extension MainViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard let cell = tableView.cellForRow(at: indexPath) as? MemoTableViewCell else { return }
         let row: Int = indexPath.row
         let writeVC: WriteViewController = WriteViewController(title: "Modify Note", realmObject: self.realm, memo: self.memos[row])
         let navigationController: UINavigationController = UINavigationController(rootViewController: writeVC)
         self.present(navigationController, animated: true) {
+            tableView.deselectRow(at: indexPath, animated: true)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let row: Int = indexPath.row
+        let deleteRowAction = UITableViewRowAction(style: .default, title: "Delete") { (deleteAction, indexPath) in
+            do {
+                try self.realm.write {
+                    self.realm.delete(self.memos[row])
+                }
+            } catch let error {
+                print("delete row action error : \(error)")
+            }
+        }
+        
+        return [deleteRowAction]
     }
 }
 
