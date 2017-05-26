@@ -80,6 +80,8 @@ class WriteViewController: UIViewController {
             make.width.equalTo(self.creationDateLabel.snp.width)
             make.bottom.equalTo(self.view.snp.bottom)
         }
+        
+        memoDataLabelUpdate()
     }
     
     init(title: String, realmObject: Realm, memo: Memo? = nil) {
@@ -111,18 +113,28 @@ class WriteViewController: UIViewController {
     // MARK: Actions
     
     func okButtonItemTouchUpInside(_ sender: UIBarButtonItem) {
-        
-        let newMemo: Memo = Memo()
-        newMemo.creationDate = dateStringToDateType(dateString: self.creationDateLabel.text!)
-        newMemo.memoTitle = self.titleTextField.text
-        newMemo.memoContents = self.contentTextView.text
-        
-        do {
-            try self.realm.write {
-                self.realm.add(newMemo)
+        if let memo = self.memo {
+            do {
+                try self.realm.write {
+                    memo.memoTitle = self.titleTextField.text
+                    memo.memoContents = self.contentTextView.text
+                }
+            } catch let error {
+                print("realm update error : \(error)")
             }
-        } catch let error {
-            print("real add error : \(error)")
+        } else {
+            let newMemo: Memo = Memo()
+            newMemo.creationDate = dateStringToDateType(dateString: self.creationDateLabel.text!)
+            newMemo.memoTitle = self.titleTextField.text
+            newMemo.memoContents = self.contentTextView.text
+            
+            do {
+                try self.realm.write {
+                    self.realm.add(newMemo)
+                }
+            } catch let error {
+                print("real add error : \(error)")
+            }
         }
         
         self.presentingViewController?.dismiss(animated: true, completion: nil)
@@ -134,10 +146,18 @@ class WriteViewController: UIViewController {
     
     // MARK: General method
     
-    func dateTypeToString() -> String {
+    func memoDataLabelUpdate() {
+        guard let memo = self.memo else { return }
+        self.creationDateLabel.text = dateTypeToString(date: memo.creationDate)
+        self.titleTextField.text = memo.memoTitle
+        self.contentTextView.textColor = .black
+        self.contentTextView.text = memo.memoContents
+    }
+    
+    func dateTypeToString(date: Date = Date()) -> String {
         let nowFormatter: DateFormatter = DateFormatter()
         nowFormatter.dateFormat = self.dateFormat
-        let nowDate: String = nowFormatter.string(from: Date())
+        let nowDate: String = nowFormatter.string(from: date)
         return nowDate
     }
     

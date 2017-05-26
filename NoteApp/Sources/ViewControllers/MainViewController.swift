@@ -17,7 +17,7 @@ class MainViewController: UIViewController {
     
     fileprivate let memoTableView: MemoTableView = {
         let memoTableView: MemoTableView = MemoTableView(frame: .zero, style: .plain)
-        memoTableView.backgroundColor = .clear
+        memoTableView.backgroundColor = .white
         memoTableView.alwaysBounceVertical = true
         memoTableView.register(MemoTableViewCell.self, forCellReuseIdentifier: "memoCell")
         return memoTableView
@@ -32,6 +32,8 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("\(Realm.Configuration.defaultConfiguration.fileURL)")
         
         // Realm
         do {
@@ -100,6 +102,13 @@ extension MainViewController: UITableViewDataSource {
 // MARK: TableView Delegate
 
 extension MainViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        guard let cell = tableView.cellForRow(at: indexPath) as? MemoTableViewCell else { return }
+        let row: Int = indexPath.row
+        let writeVC: WriteViewController = WriteViewController(title: "Modify Note", realmObject: self.realm, memo: self.memos[row])
+        let navigationController: UINavigationController = UINavigationController(rootViewController: writeVC)
+        self.present(navigationController, animated: true) {
+        }
+    }
 }
 
